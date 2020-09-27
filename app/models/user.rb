@@ -11,7 +11,6 @@ class User < ApplicationRecord
          validates :pronuciation_family_name,  format: { with: /\A[ァ-ヶー－]+\z/,message: "は全角カタカナで入力してください" }
          validates :pronuciation_name,         format: { with: /\A[ァ-ヶー－]+\z/,message: "は全角カタカナで入力してください" }
          validates :birth_date
-            
   end
 
 end
