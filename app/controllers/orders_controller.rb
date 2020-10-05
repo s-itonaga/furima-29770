@@ -5,7 +5,19 @@ class OrdersController < ApplicationController
   end
 
   def crate
-    
+    @item = Item.find[:item_id]
+    @order = @item.order.new(order_params)
+    if @order.save
+      redirect_to item_path(@item)
+    else
+      render :index
+    end
+  end
+
+  private
+
+  def order_params
+    params.require(:order).merge(user_id: current_user.id)
   end
 
 end
