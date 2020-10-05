@@ -4,8 +4,8 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def crate
-    @item = Item.find[:item_id]
+  def create
+    @item = Item.find(params[:item_id])
     @order = @item.order.new(order_params)
     if @order.save
       redirect_to item_path(@item)
