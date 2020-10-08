@@ -2,6 +2,8 @@ class OrdersController < ApplicationController
   before_action :set_item
   before_action :move_to_rogin
   before_action :move_to_root
+  before_action :move_to_item_index
+
   def index
     @order = Order.new
   end
@@ -18,8 +20,14 @@ class OrdersController < ApplicationController
   end
 
   private
+  def method_name
+    if @item.order != null
+      redirect_to root_path
+    end
+  end
+
   def move_to_root
-    if user_signed_in? && current_user.id == @item.user_id
+    if user_signed_in? && current_user.id
       redirect_to root_path
     end
   end
