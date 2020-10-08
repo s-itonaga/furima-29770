@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   private
 
   def move_to_root
-    if user_signed_in? && current_user.id || @item.order != null
+    if user_signed_in? && current_user.id == @item.user.id || @item.order.present?
       redirect_to root_path
     end
   end
