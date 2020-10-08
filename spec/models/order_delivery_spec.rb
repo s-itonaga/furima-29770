@@ -36,10 +36,16 @@ RSpec.describe OrderDelivery, type: :model do
       @order_delivery.valid?
       expect(@order_delivery.errors.full_messages).to include("Phone number can't be blank", 'Phone number is not a number')
     end
-    it '電話番号はハイフン不要で１１桁以内であること' do
-      @order_delivery.phone_number = '090-1111-0000'
+    it '電話番号はハイフン不要で１１桁以内であること(ハイフンがある場合)' do
+      @order_delivery.phone_number = '090-111-000'
       @order_delivery.valid?
-      expect(@order_delivery.errors.full_messages).to include('Phone number is not a number', 'Phone number is too long (maximum is 11 characters)')
+      expect(@order_delivery.errors.full_messages).to include("Phone number is not a number")
     end
+    it '電話番号はハイフン不要で１１桁以内であること' do
+      @order_delivery.phone_number = '090111110000'
+      @order_delivery.valid?
+      expect(@order_delivery.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+    end
+
   end
 end
