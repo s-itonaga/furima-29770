@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_item
-
+  before_action :move_to_rogin
   def index
     @order = Order.new
   end
@@ -17,6 +17,12 @@ class OrdersController < ApplicationController
   end
 
   private
+  def move_to_rogin
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+  end
+
   def set_item
     @item = Item.find(params[:item_id])
   end
