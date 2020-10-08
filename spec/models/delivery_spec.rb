@@ -5,7 +5,7 @@ RSpec.describe Delivery, type: :model do
     @delivery = FactryBot.buid(:delivery)
   end
 
-  describe "配送先の住所登録" do
+  describe '配送先の住所登録' do
     it '郵便番号が必須であること' do
     end
     it '郵便番号にはハイフンが必要であること' do
