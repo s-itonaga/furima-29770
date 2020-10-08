@@ -6,6 +6,11 @@ RSpec.describe OrderDelivery, type: :model do
   end
 
   describe '配送先の住所登録' do
+    it 'クレジットカード情報を記入し、トークンが必須であること' do
+      @order_delivery.token = ''
+      @order_delivery.valid?
+      expect(@order_delivery.errors.full_messages).to include("Token can't be blank")
+    end
     it '郵便番号が必須であること' do
       @order_delivery.postal_code = ''
       @order_delivery.valid?
