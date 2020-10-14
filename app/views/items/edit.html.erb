@@ -25,6 +25,8 @@ app/assets/stylesheets/items/new.css %>
         </p>
         <%= f.file_field :image, id:"item-image" %>
           <% image_tag @item.image if @item.image.attached? %>
+        <div id="image-list"></div>
+
       </div>
     </div>
     <%# /出品画像 %>
